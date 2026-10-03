@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResumeForge</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= LANDING PAGE ================= -->
+
+<section id="landing" class="page active">
+
+    <nav class="navbar">
+        <div class="logo">Resume<span>Forge</span></div>
+
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="#templates">Templates</a>
+            <button onclick="startBuilder()">Create Resume</button>
+        </div>
+    </nav>
+
+    <main class="hero">
+
+        <div class="hero-content">
+            <p class="eyebrow">SMART RESUME BUILDER</p>
+
+            <h1>
+                Build a resume that
+                <span>gets noticed.</span>
+            </h1>
+
+            <p class="hero-text">
+                Create a clean, professional and ATS-friendly resume
+                with a live preview in minutes.
+            </p>
+
+            <div class="hero-buttons">
+                <button class="primary-btn" onclick="startBuilder()">
+                    Create My Resume →
+                </button>
+
+                <button class="secondary-btn" onclick="showTemplates()">
+                    Explore Templates
+                </button>
+            </div>
+
+            <div class="trust-row">
+                <div>
+                    <strong>100%</strong>
+                    <small>Customizable</small>
+                </div>
+
+                <div>
+                    <strong>Live</strong>
+                    <small>Preview</small>
+                </div>
+
+                <div>
+                    <strong>ATS</strong>
+                    <small>Friendly</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-preview">
+
+            <div class="mini-resume">
+                <div class="mini-header">
+                    <div class="avatar"></div>
+
+                    <div>
+                        <div class="line big"></div>
+                        <div class="line medium"></div>
+                    </div>
+                </div>
+
+                <div class="resume-line"></div>
+
+                <div class="preview-section">
+                    <div class="line title"></div>
+                    <div class="line"></div>
+                    <div class="line"></div>
+                    <div class="line short"></div>
+                </div>
+
+                <div class="preview-section">
+                    <div class="line title"></div>
+                    <div class="line"></div>
+                    <div class="line medium"></div>
+                    <div class="line"></div>
+                </div>
+
+                <div class="preview-section">
+                    <div class="line title"></div>
+
+                    <div class="skills">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <section class="features" id="features">
+
+        <div class="section-heading">
+            <p class="eyebrow">WHY RESUMEFORGE</p>
+            <h2>Everything you need to build a better resume.</h2>
+        </div>
+
+        <div class="feature-grid">
+
+            <div class="feature-card">
+                <div class="icon">✦</div>
+                <h3>Live Preview</h3>
+                <p>See every change instantly while editing your resume.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">✓</div>
+                <h3>ATS Ready</h3>
+                <p>Check your resume for common ATS issues before applying.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="icon">↗</div>
+                <h3>Professional Templates</h3>
+                <p>Choose a clean template designed for recruiters.</p>
+            </div>
+
+        </div>
+
+    </section>
+
+</section>
+
+
+<!-- ================= BUILDER ================= -->
+
+<section id="builder" class="page">
+
+    <header class="builder-header">
+
+        <div class="logo">Resume<span>Forge</span></div>
+
+        <div class="builder-actions">
+            <button class="ghost-btn" onclick="goHome()">← Home</button>
+            <button class="primary-small" onclick="showATS()">Check ATS</button>
+            <button class="primary-small" onclick="window.print()">Export PDF</button>
+        </div>
+
+    </header>
+
+
+    <main class="builder">
+
+        <!-- LEFT PANEL -->
+
+        <aside class="editor">
+
+            <div class="editor-heading">
+                <div>
+                    <p class="eyebrow">RESUME BUILDER</p>
+                    <h2>Edit your resume</h2>
+                </div>
+
+                <span id="completion">0%</span>
+            </div>
+
+            <div class="progress">
+                <div id="progressBar"></div>
+            </div>
+
+
+            <!-- PERSONAL -->
+
+            <div class="form-section">
+
+                <h3>01 — Personal Information</h3>
+
+                <div class="input-grid">
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Full Name"
+                        oninput="updateResume()"
+                    >
+
+                    <input
+                        type="text"
+                        id="role"
+                        placeholder="Professional Title"
+                        oninput="updateResume()"
+                    >
+
+                </div>
+
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Email Address"
+                    oninput="updateResume()"
+                >
+
+                <input
+                    type="text"
+                    id="phone"
+                    placeholder="Phone Number"
+                    oninput="updateResume()"
+                >
+
+                <input
+                    type="text"
+                    id="location"
+                    placeholder="Location"
+                    oninput="updateResume()"
+                >
+
+                <input
+                    type="text"
+                    id="linkedin"
+                    placeholder="LinkedIn / Portfolio URL"
+                    oninput="updateResume()"
+                >
+
+            </div>
+
+
+            <!-- SUMMARY -->
+
+            <div class="form-section">
+
+                <h3>02 — Professional Summary</h3>
+
+                <textarea
+                    id="summary"
+                    rows="5"
+                    placeholder="Write a short professional summary..."
+                    oninput="updateResume()"
+                ></textarea>
+
+            </div>
+
+
+            <!-- EDUCATION -->
+
+            <div class="form-section">
+
+                <h3>03 — Education</h3>
+
+                <input
+                    type="text"
+                    id="degree"
+                    placeholder="Degree / Course"
+                    oninput="updateResume()"
+                >
+
+                <input
+                    type="text"
+                    id="college"
+                    placeholder="College / University"
+                    oninput="updateResume()"
+                >
+
+                <input
+                    type="text"
+                    id="year"
+                    placeholder="Year • CGPA"
+                    oninput="updateResume()"
+                >
+
+            </div>
+
+
+            <!-- SKILLS -->
+
+            <div class="form-section">
+
+                <h3>04 — Skills</h3>
+
+                <input
+                    type="text"
+                    id="skills"
+                    placeholder="Python, JavaScript, SQL, HTML, CSS..."
+                    oninput="updateResume()"
+                >
+
+                <small>Separate skills using commas.</small>
+
+            </div>
+
+
+            <!-- PROJECT -->
+
+            <div class="form-section">
+
+                <h3>05 — Project</h3>
+
+                <input
+                    type="text"
+                    id="projectName"
+                    placeholder="Project Name"
+                    oninput="updateResume()"
+                >
+
+                <textarea
+                    id="projectDescription"
+                    rows="4"
+                    placeholder="Describe your project..."
+                    oninput="updateResume()"
+                ></textarea>
+
+            </div>
+
+
+            <!-- EXPERIENCE -->
+
+            <div class="form-section">
+
+                <h3>06 — Experience</h3>
+
+                <input
+                    type="text"
+                    id="company"
+                    placeholder="Company / Organization"
+                    oninput="updateResume()"
+                >
+
+                <input
+                    type="text"
+                    id="position"
+                    placeholder="Role"
+                    oninput="updateResume()"
+                >
+
+                <textarea
+                    id="experience"
+                    rows="4"
+                    placeholder="Describe your experience..."
+                    oninput="updateResume()"
+                ></textarea>
+
+            </div>
+
+
+        </aside>
+
+
+        <!-- RIGHT PREVIEW -->
+
+        <section class="preview-area">
+
+            <div class="preview-toolbar">
+
+                <div>
+                    <span class="status-dot"></span>
+                    Live Preview
+                </div>
+
+                <select id="template" onchange="changeTemplate()">
+                    <option value="modern">Modern</option>
+                    <option value="minimal">Minimal</option>
+                </select>
+
+            </div>
+
+
+            <div class="resume-paper" id="resumePaper">
+
+                <header class="resume-header">
+
+                    <div>
+
+                        <h1 id="previewName">Your Name</h1>
+
+                        <p id="previewRole">
+                            Professional Title
+                        </p>
+
+                    </div>
+
+                    <div class="contact">
+
+                        <p id="previewEmail">email@example.com</p>
+                        <p id="previewPhone">+91 XXXXX XXXXX</p>
+                        <p id="previewLocation">India</p>
+
+                    </div>
+
+                </header>
+
+
+                <div class="resume-content">
+
+                    <section>
+                        <h2>PROFILE</h2>
+                        <p id="previewSummary">
+                            Your professional summary will appear here.
+                        </p>
+                    </section>
+
+
+                    <section>
+
+                        <h2>EDUCATION</h2>
+
+                        <div class="resume-item">
+
+                            <div class="item-heading">
+
+                                <strong id="previewDegree">
+                                    Degree / Course
+                                </strong>
+
+                                <span id="previewYear">
+                                    Year
+                                </span>
+
+                            </div>
+
+                            <p id="previewCollege">
+                                College / University
+                            </p>
+
+                        </div>
+
+                    </section>
+
+
+                    <section>
+
+                        <h2>SKILLS</h2>
+
+                        <div id="previewSkills" class="skill-list">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>JavaScript</span>
+                        </div>
+
+                    </section>
+
+
+                    <section>
+
+                        <h2>PROJECT</h2>
+
+                        <div class="resume-item">
+
+                            <strong id="previewProject">
+                                Your Project
+                            </strong>
+
+                            <p id="previewProjectDescription">
+                                Your project description.
+                            </p>
+
+                        </div>
+
+                    </section>
+
+
+                    <section id="experienceSection">
+
+                        <h2>EXPERIENCE</h2>
+
+                        <div class="resume-item">
+
+                            <div class="item-heading">
+
+                                <strong id="previewPosition">
+                                    Position
+                                </strong>
+
+                                <span id="previewCompany">
+                                    Company
+                                </span>
+
+                            </div>
+
+                            <p id="previewExperience">
+                                Your experience.
+                            </p>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</section>
+
+
+<!-- ================= ATS MODAL ================= -->
+
+<div class="modal" id="atsModal">
+
+    <div class="modal-box">
+
+        <button class="close" onclick="closeATS()">×</button>
+
+        <p class="eyebrow">RESUME ANALYSIS</p>
+
+        <h2>Your ATS Score</h2>
+
+        <div class="score" id="atsScore">0%</div>
+
+        <p id="atsMessage">
+            Complete your resume to receive an analysis.
+        </p>
+
+        <div class="analysis-list">
+
+            <div>
+                <span>✓</span>
+                Contact Information
+            </div>
+
+            <div>
+                <span>✓</span>
+                Education
+            </div>
+
+            <div>
+                <span>✓</span>
+                Skills
+            </div>
+
+            <div>
+                <span>!</span>
+                Add measurable achievements
+            </div>
+
+        </div>
+
+        <button class="primary-btn" onclick="closeATS()">
+            Continue Editing
+        </button>
+
+    </div>
+
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
